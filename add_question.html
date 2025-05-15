@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>إضافة سؤال تفاعلي - عربي بلس</title>
+    <style>
+        body { font-family: 'Arial'; background-color: #f3f4f6; padding: 20px; }
+        .container { max-width: 600px; background: white; padding: 30px; margin: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        label { display: block; margin-top: 20px; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 6px; border: 1px solid #ccc; }
+        button { margin-top: 20px; background: #059669; color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>إضافة سؤال تفاعلي</h1>
+        <form>
+            <label>اختر الدرس:</label>
+            <select>
+                <option>الدرس 1: الجملة الاسمية</option>
+                <option>الدرس 2: الفعل المضارع</option>
+            </select>
+
+            <label>نص السؤال:</label>
+            <textarea rows="3" placeholder="اكتب السؤال هنا..."></textarea>
+
+            <label>الاختيارات:</label>
+            <input type="text" placeholder="الخيار 1">
+            <input type="text" placeholder="الخيار 2">
+            <input type="text" placeholder="الخيار 3">
+            <input type="text" placeholder="الخيار 4">
+
+            <label>الإجابة الصحيحة:</label>
+            <input type="text" placeholder="رقم الخيار الصحيح (مثال: 2)">
+
+            <button type="submit">حفظ السؤال</button>
+        </form>
+    </div>
+</body>
+</html>
