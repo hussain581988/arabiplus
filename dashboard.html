@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة الطالب - عربي بلس</title>
+    <style>
+        body { font-family: 'Arial'; background-color: #eef2f7; margin: 0; padding: 0; }
+        .header { background-color: #2563eb; color: white; padding: 20px; text-align: center; }
+        .container { padding: 30px; max-width: 800px; margin: auto; }
+        .progress { background-color: #ddd; border-radius: 5px; overflow: hidden; margin: 20px 0; }
+        .progress-bar { background-color: #059669; height: 20px; width: 40%; }
+        .lessons { margin-top: 30px; }
+        .lesson { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px;
+                  box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .lesson a { text-decoration: none; color: #2563eb; font-weight: bold; }
+        .footer { text-align: center; margin-top: 40px; color: #888; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>مرحبًا بك في لوحة الطالب - عربي بلس</h1>
+    </div>
+    <div class="container">
+        <h2>نسبة التقدم:</h2>
+        <div class="progress">
+            <div class="progress-bar"></div>
+        </div>
+
+        <h2>الدروس المتاحة:</h2>
+        <div class="lessons">
+            <div class="lesson">
+                <p>الدرس 1: الجملة الاسمية</p>
+                <a href="lesson_view.html">ابدأ الدرس</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>عربي بلس - 2025</p>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+
+    <script>
+    
+    const firebaseConfig = {
+        apiKey: "AIzaSyB9tww9yhta3OZNjFabk9eZOlW76JwBTgQ",
+        authDomain: "arabiplus-73753.firebaseapp.com",
+        projectId: "arabiplus-73753",
+        storageBucket: "arabiplus-73753.firebasestorage.app",
+        messagingSenderId: "355354626480",
+        appId: "1:355354626480:web:4c0593bb0a20c5faafee75"
+    };
+
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    db.collection("students").add({
+        name: "محمد الكندري",
+        progress: 20
+    })
+    .then((docRef) => {
+        console.log("تم حفظ الطالب، ID:", docRef.id);
+    })
+    .catch((error) => {
+        console.error("خطأ في الحفظ:", error);
+    });
+    
+// قراءة بيانات الطالب حسب شرط (مثال: الاسم الثابت)
+db.collection("students")
+  .where("name", "==", "محمد الكندري")
+  .get()
+  .then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      const student = doc.data();
+      document.querySelector(".header h1").textContent = "مرحبًا " + student.name;
+      document.querySelector(".progress-bar").style.width = student.progress + "%";
+    });
+  })
+  .catch((error) => {
+    console.error("فشل في قراءة البيانات:", error);
+  });
+</script>
+</body>
+</html>
